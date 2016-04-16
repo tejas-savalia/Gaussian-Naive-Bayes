@@ -186,6 +186,19 @@ print accuracy(X, y)
 
 
 # In[ ]:
+# Accuracy and confusion matrix
+
+def accuracy_and_confusion(XTest, yTest):
+    count = 0
+    confusion_matrix = numpy.zeros((len(numpy.unique(y)), len(numpy.unique(y))))
+    for i in range(len(yTest)):
+        predict = Naive_Bayes_predict(prior, XTest[i, :], numpy.unique(y))
+        if predict == yTest[i]:
+            count = count + 1
+        confusion_matrix[predict][yTest[i]] += 1
+    return count/float(len(yTest)), confusion_matrix
+    
+print accuracy_and_confusion(X[500:], y[500:])
 
 
 
